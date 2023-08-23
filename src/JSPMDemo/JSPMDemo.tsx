@@ -21,6 +21,7 @@ export const JSPMDemo = () => {
     EMULATED_ZEBRA_PRINTER_NAME
   );
   const [availablePrinters, setAvailablePrinters] = useState<string[]>([]);
+  const [printStatus, setPrintStatus] = useState<string>("");
 
   useEffect(() => {
     const startJspmConnection = async () => {
@@ -40,6 +41,19 @@ export const JSPMDemo = () => {
       cpj.clientPrinter = new InstalledPrinter("Emulated ZPL Printer");
 
       cpj.printerCommands = jspmZplString;
+
+      cpj.onError = (error) => {
+        console.log(error);
+      };
+
+      cpj.onUpdated = function (data) {
+        console.info(data);
+        setPrintStatus(data?.["state-description"] ?? data.result ?? "");
+      };
+
+      cpj.onFinished = function (data) {
+        console.info(data);
+      };
 
       cpj.sendToClient();
     }
@@ -67,6 +81,7 @@ export const JSPMDemo = () => {
         <Button variant="contained" onClick={printHandler}>
           Send demo content to label printer
         </Button>
+        {printStatus && <h3>Print Status: {printStatus}</h3>}
       </Box>
     </>
   );

@@ -12,7 +12,7 @@ export const JSOnlyDemo = () => {
 
   return (
     <>
-      <h1>Vanilla JS Demo</h1>
+      <h1>JS Only Demo</h1>
       <iframe
         id="printFrame"
         name="printFrame"
