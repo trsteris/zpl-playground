@@ -3,25 +3,22 @@ import { pureJsZplString } from "../assets/ZPLTest";
 
 export const JSOnlyDemo = () => {
   const printHandler = () => {
-    const networkCallData = pureJsZplString;
-    const doc = document.getElementById("printf").contentWindow.document;
+    const doc = document.getElementById("printFrame").contentWindow.document;
     doc.open();
-    doc.write(networkCallData);
+    doc.write(pureJsZplString);
     doc.close();
-    window.frames["printf"].focus();
-    window.frames["printf"].print();
+    window.frames["printFrame"].print();
   };
 
   return (
     <>
       <h1>Vanilla JS Demo</h1>
-      <iframe id="printf" name="printf" style={{ display: "none" }}></iframe>
-      <div id="printablediv"></div>
+      <iframe
+        id="printFrame"
+        name="printFrame"
+        style={{ display: "none" }}
+      ></iframe>
       <div>
-        <p>
-          Below method does not use any library/application. Manually select the
-          ZPL printer in next screen
-        </p>
         <Button variant="contained" onClick={printHandler}>
           Vanilla JS
         </Button>
