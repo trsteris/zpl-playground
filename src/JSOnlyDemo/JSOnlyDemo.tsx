@@ -19,8 +19,8 @@ export const JSOnlyDemo = () => {
         style={{ display: "none" }}
       ></iframe>
       <div>
-        <Button variant="contained" onClick={printHandler}>
-          Vanilla JS
+        <Button variant="contained" onClick={printHandler} fullWidth>
+          Send demo content to label printer
         </Button>
       </div>
     </>
